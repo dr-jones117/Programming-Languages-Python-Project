@@ -1,8 +1,53 @@
-from RiverCode.RiverSystem import RiverSystem
-from RiverCode.Boat import Boat
+# Grading tags in for all lines marked with * ___
+#
+# Tierless str meets D in SOLID(hidden test)*		___
+# Check if above is done, but not its test was not reached	___
+#
+# 1. Initial Show system\Got it compiling
+# Menu\initial system working					    ___
+# Bad input handled						            ___
+#
+# 2. Add Default
+# Added and shown properly					        ___
+# Secon d+ item ignored						        ___
+#
+# 3. Basic Update (single)
+# Moves along section						        ___
+# String format correct						        ___
+# Iterator use d*							        ___
+#
+# 4. Basic Update (multiple)					    ___
+#
+# 5. Multi Update
+# Updates correctly						            ___
+# Bad input handled						            ___
+#
+# 6. Show details
+# Shows details properly 						    ___
+# Iterator use d*							        ___
+#
+# 6. Add user specified item
+# Basic movement still works					    ___
+# Powered works							            ___
+# No passing							            ___
+#
+# 7. Tester part 1
+# Boats works up to second lock 					___
+# Formatting correct 						        ___
+#
+# 8. Tester part 2
+# Boats works up to end						        ___
+# Strategy pattern for basic fil l*				    ___
+#     Strategy pattern for fast empt y*				___
+#
+# 9. Custom belt **
+# String formatting correct					        ___
+# Everything still works 						    ___
+# Bad input handled 						        ___
 
-boat_id = 1
-river_system = RiverSystem()
+from RiverSystem import RiverSystem
+from RiverPart.Boat import Boat
+
 
 def cleanInput(prompt):
     result = input(prompt)
@@ -12,12 +57,6 @@ def cleanInput(prompt):
 
     return result
 
-
-def update():
-    return
-
-def add_default_boat():
-    river_system.add_boat(Boat(boat_id))
 
 def main():
     menu = "\n" \
@@ -30,17 +69,20 @@ def main():
            "7) Make New Simulator\n" \
            "0) Quit\n"
 
+    boat_id = 1
+    river_system = RiverSystem()
     print(river_system)
 
     choice = -1
     while choice != 0:
-        print(river_system)
-        print(menu)
-        choice = cleanInput("Choice:> ")
         try:
-            choice = int(choice)
+            print(menu)
+            choice = int(cleanInput("Choice:> "))
+
+            # add default box
             if choice == 1:
-                add_default_boat()
+                add_default_boat(boat_id, river_system)
+                boat_id += 1
 
             # update one time
             elif choice == 2:
@@ -70,17 +112,22 @@ def main():
             elif choice == -1:
                 print("TODO")
 
-            elif choice < 0 or choice > 7:
+            elif choice == 0:
                 choice = 0
-            else:
-                print("Input an option in the range 0-7")
 
+            elif choice < -1 or choice > 7:
+                print("Input an option in the range 0-7")
         except ValueError:
-            import traceback
-            print(traceback.format_exc())
-            print('Please, input a positive integer.')
+            # import traceback
+            # print(traceback.format_exc())
+            print('Please, input a positive integer')
+
+
+def add_default_boat(boat_id: int, river_system: RiverSystem):
+    new_boat = Boat(boat_id)
+    river_system.add_boat(new_boat)
+    print(river_system)
 
 
 if __name__ == '__main__':
     main()
-

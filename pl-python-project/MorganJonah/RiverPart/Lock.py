@@ -7,31 +7,34 @@ from MorganJonah.RiverPart.RiverPart import RiverPart
 class Lock(RiverPart):
     def __init__(self, depth: int = 0):
         super().__init__()
-        self.depth: int = depth
-        self.boat: Optional[Boat] = None
+        self.__depth: int = depth
+        self.__boat: Optional[Boat] = None
+        self.__water_level = 0
 
     def update(self):
-        return
+        if self.__boat is not None and self.next.is_open():
+            self.next.receive_boat(self.__boat)
+            self.__boat = None
 
     def remove_boat(self, boat: Boat):
-        self.boat = None
+        boat = None
 
     def is_open(self) -> bool:
-        if self.boat is None:
-            return False
-        return True
+        if self.__boat is None:
+            return True
+        return False
 
     def receive_boat(self, boat: Boat):
-        self.boat = boat
+        self.__boat = boat
 
     def __str__(self):
-        if self.boat is None:
-            return f'_X( {self.depth})_'
+        if self.__boat is None:
+            return f'_X( {self.__water_level})_'
         else:
-            return f'_{self.boat.symbol}( {self.depth})_'
+            return f'_{str(self.__boat)}( {self.__water_level})_'
 
     def alt_str(self):
-        if self.boat is None:
+        if self.__boat is None:
             return f'.......'
         else:
-            return f'{self.boat.id}.....'
+            return self.__boat.get_id() + '.' * (7 - len(self.__boat.get_id()))

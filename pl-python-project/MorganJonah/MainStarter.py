@@ -44,9 +44,13 @@
 # String formatting correct					        ___
 # Everything still works 						    ___
 # Bad input handled 						        ___
-
+from MorganJonah.BoatBehavior.BoatBehavior import SteadyBoatBehavior, MaxSpeedBoatBehavior
+from MorganJonah.RiverPart.Lock import Lock
+from MorganJonah.RiverPart.Section import Section
 from RiverSystem import RiverSystem
 from RiverPart.Boat import Boat
+
+boat_id = 1
 
 
 def cleanInput(prompt):
@@ -69,7 +73,7 @@ def main():
            "7) Make New Simulator\n" \
            "0) Quit\n"
 
-    boat_id = 1
+    global boat_id
     river_system = RiverSystem()
     print(river_system)
 
@@ -86,23 +90,25 @@ def main():
 
             # update one time
             elif choice == 2:
-                print("TODO")
+                river_system.update()
+                print(river_system)
 
             # update X number of times
             elif choice == 3:
-                print("TODO")
+                run_multiple_updates(river_system)
 
             # print out station details
             elif choice == 4:
-                print("TODO")
+                show_section_details(river_system)
 
             # make a new box of any size
             elif choice == 5:
-                print("TODO")
+                add_boat(boat_id, river_system)
 
             # make new system
             elif choice == 6:
-                print("TODO")
+                river_system.make_tester_river()
+                print(river_system)
 
             # make new system
             elif choice == 7:
@@ -110,7 +116,7 @@ def main():
 
             # debug/check for D in SOLID in __str__
             elif choice == -1:
-                print("TODO")
+                hidden_command(river_system)
 
             elif choice == 0:
                 choice = 0
@@ -123,10 +129,60 @@ def main():
             print('Please, input a positive integer')
 
 
+def add_boat(boat_id: int, river_system: RiverSystem):
+    power = int(cleanInput("What engine power:> "))
+    travel_method = int(cleanInput("What travel method. (1) Steady or (2) Max :> "))
+    if travel_method < 1 or travel_method > 2:
+        print('Input an option in the range 1-2')
+        print(river_system)
+        return
+
+    boat = None
+    if travel_method == 1:
+        boat = Boat(boat_id, power, SteadyBoatBehavior())
+    elif travel_method == 2:
+        boat = Boat(boat_id, power, MaxSpeedBoatBehavior())
+
+    river_system.add_boat(boat)
+    print(river_system)
+
+
+
 def add_default_boat(boat_id: int, river_system: RiverSystem):
     new_boat = Boat(boat_id)
     river_system.add_boat(new_boat)
     print(river_system)
+
+
+
+def hidden_command(river_system: RiverSystem):
+    test_section = Section()
+    test_lock = Lock()
+
+    boat_one = Boat(1)
+    boat_two = Boat(2)
+    boat_three = Boat(3)
+
+    test_section.receive_boat(boat_one)
+    test_lock.receive_boat(boat_two)
+    river_system.add_boat(boat_three)
+
+    # GRADING: TO_STR
+    print(boat_one)
+    print(test_section)
+    print(test_lock)
+    print(river_system)
+
+
+def run_multiple_updates(river_system: RiverSystem):
+    choice = int(cleanInput("How many updates:> "))
+    for _ in range(choice):
+        river_system.update()
+        print(river_system)
+
+
+def show_section_details(river_system: RiverSystem):
+    river_system.show_section_details()
 
 
 if __name__ == '__main__':

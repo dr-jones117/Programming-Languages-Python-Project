@@ -35,29 +35,37 @@ class Section(RiverPart):
     def update(self):
         iter = ReverseBoatListIterator(self.boats)
         for boat in iter:
-            try:
-                if boat is not None:
-                    curr_idx = iter.index + 1
-                    new_idx = curr_idx + 1
-                    boat_is_gone = False
-                    for _ in range(boat.boat_behavior.get_update_distance(boat.power, self.flow)):
-                        if boat_is_gone:
-                            break
-                        if new_idx >= len(self.boats) and self.next is None:
-                            self.boats[curr_idx] = None
-                            boat_is_gone = True
-                        elif new_idx >= len(self.boats) and self.next is not None and self.next.is_open():
-                            self.next.receive_boat(self.boats[curr_idx])
-                            self.boats[curr_idx] = None
-                        elif self.boats[new_idx] is None:
-                            self.boats[new_idx] = self.boats[curr_idx]
-                            self.boats[curr_idx] = None
-                        curr_idx = new_idx
-                        new_idx += 1
-            except:
-                continue
+            if boat is not None:
+                self.update_boat_at_pos(iter.index + 1)
 
 
+    def update_boat_at_pos(self, start_idx: int):
+        actual_start_idx = start_idx
+        boat = self.boats[start_idx]
+        distance = boat.boat_behavior.get_update_distance(boat.power, self.flow)
+        handled_long_distance = False
+
+        for i in range(distance):
+            if handled_long_distance:
+                break
+
+            offset = start_idx + 1
+            if offset >= len(self.boats):
+                handled_long_distance = True
+
+                if self.next is not None and self.next.is_open() and actual_start_idx == len(self.boats) - 1:
+                    self.next.receive_boat(self.boats[start_idx])
+                    self.boats[start_idx] = None
+                elif self.next is None:
+                    self.boats[start_idx] = None
+                else:
+                    return
+
+            elif self.boats[offset] is None:
+                self.boats[offset] = self.boats[start_idx]
+                self.boats[start_idx] = None
+
+            start_idx = offset
 
     def remove_boat(self, boat: Boat):
         boat = None

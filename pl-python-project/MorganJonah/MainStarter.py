@@ -1,30 +1,30 @@
-# Grading tags in for all lines marked with * ___
+# Grading tags in for all lines marked with *               ___
 #
-# Tierless str meets D in SOLID(hidden test)*		___
+# Tierless str meets D in SOLID(hidden test)*		        _DONE_
 # Check if above is done, but not its test was not reached	___
 #
 # 1. Initial Show system\Got it compiling
-# Menu\initial system working					    ___
-# Bad input handled						            ___
+# Menu\initial system working					    _DONE_
+# Bad input handled						            _DONE_
 #
 # 2. Add Default
-# Added and shown properly					        ___
-# Secon d+ item ignored						        ___
+# Added and shown properly					        _DONE_
+# Secon d+ item ignored						        _DONE_
 #
 # 3. Basic Update (single)
-# Moves along section						        ___
-# String format correct						        ___
-# Iterator use d*							        ___
+# Moves along section						        _DONE_
+# String format correct						        _DONE_
+# Iterator use d*							        _DONE_
 #
-# 4. Basic Update (multiple)					    ___
+# 4. Basic Update (multiple)					    _DONE_
 #
 # 5. Multi Update
-# Updates correctly						            ___
-# Bad input handled						            ___
+# Updates correctly						            _DONE_
+# Bad input handled						            _DONE_
 #
 # 6. Show details
-# Shows details properly 						    ___
-# Iterator use d*							        ___
+# Shows details properly 						    _DONE_
+# Iterator use d*							        _DONE_
 #
 # 6. Add user specified item
 # Basic movement still works					    ___
@@ -104,6 +104,7 @@ def main():
             # make a new box of any size
             elif choice == 5:
                 add_boat(boat_id, river_system)
+                boat_id += 1
 
             # make new system
             elif choice == 6:

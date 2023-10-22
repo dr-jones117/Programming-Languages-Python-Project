@@ -40,11 +40,12 @@ class Section(RiverPart):
 
 
     def update_boat_at_pos(self, start_idx: int):
+
         actual_start_idx = start_idx
         boat = self.boats[start_idx]
         distance = boat.boat_behavior.get_update_distance(boat.power, self.flow)
-        handled_long_distance = False
 
+        handled_long_distance = False
         for i in range(distance):
             if handled_long_distance:
                 break
@@ -56,7 +57,7 @@ class Section(RiverPart):
                 if self.next is not None and self.next.is_open() and actual_start_idx == len(self.boats) - 1:
                     self.next.receive_boat(self.boats[start_idx])
                     self.boats[start_idx] = None
-                elif self.next is None:
+                elif self.next is None and actual_start_idx == start_idx:
                     self.boats[start_idx] = None
                 else:
                     return
@@ -64,6 +65,8 @@ class Section(RiverPart):
             elif self.boats[offset] is None:
                 self.boats[offset] = self.boats[start_idx]
                 self.boats[start_idx] = None
+            elif self.boats[offset] is not None:
+                return
 
             start_idx = offset
 

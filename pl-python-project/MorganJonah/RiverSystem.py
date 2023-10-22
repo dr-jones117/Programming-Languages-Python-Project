@@ -43,6 +43,7 @@ class RiverSystem():
         for part in river_part_itr:
             part.update()
 
+
     def show_section_details(self):
         iter = SectionIterator(self.__river_parts)
         for section in iter:

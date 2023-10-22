@@ -103,7 +103,7 @@ def main():
 
             # make a new box of any size
             elif choice == 5:
-                add_boat(boat_id, river_system)
+                add_boat(river_system)
                 boat_id += 1
 
             # make new system
@@ -130,19 +130,23 @@ def main():
             print('Please, input a positive integer')
 
 
-def add_boat(boat_id: int, river_system: RiverSystem):
+def add_boat(river_system: RiverSystem):
+    global boat_id
     power = int(cleanInput("What engine power:> "))
     travel_method = int(cleanInput("What travel method. (1) Steady or (2) Max :> "))
     if travel_method < 1 or travel_method > 2:
         print('Input an option in the range 1-2')
+        boat_id -= 1
         print(river_system)
         return
 
     boat = None
     if travel_method == 1:
-        boat = Boat(boat_id, power, SteadyBoatBehavior())
+        behavior = SteadyBoatBehavior()
+        boat = Boat(boat_id, power, behavior)
     elif travel_method == 2:
-        boat = Boat(boat_id, power, MaxSpeedBoatBehavior())
+        behavior = MaxSpeedBoatBehavior()
+        boat = Boat(boat_id, power, behavior)
 
     river_system.add_boat(boat)
     print(river_system)

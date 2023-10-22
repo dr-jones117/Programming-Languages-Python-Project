@@ -4,11 +4,11 @@ from morgan_jonah.RiverSystem.RiverParts.RiverPart import RiverPart
 
 
 class ReverseRiverPartIterator:
-    # GRADING: ITER_ALL
     def __init__(self, river_parts: List[RiverPart]):
         self.river_parts: List[RiverPart] = river_parts
         self.idx = len(river_parts) - 1
 
+    # GRADING: ITER_ALL
     def __iter__(self):
         return self
 

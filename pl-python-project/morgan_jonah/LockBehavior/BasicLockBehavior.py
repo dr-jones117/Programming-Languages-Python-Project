@@ -1,6 +1,7 @@
 from morgan_jonah.LockBehavior.LockBehavior import LockBehavior
 
 
+# GRADING: BASIC_FILL
 class BasicLockBehavior(LockBehavior):
     def handle_lock(self, lock):
         if lock.boat is not None and lock.water_level < lock.depth:

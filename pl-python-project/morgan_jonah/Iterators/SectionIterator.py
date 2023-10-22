@@ -9,6 +9,7 @@ class SectionIterator:
         self.sections: List[RiverPart] = sections
         self.idx = 0
 
+    # GRADING: ITER_RESTRICT
     def __iter__(self):
         return self
 

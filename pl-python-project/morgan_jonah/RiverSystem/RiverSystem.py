@@ -45,6 +45,7 @@ class RiverSystem():
             part.update()
 
     def show_section_details(self):
+        # GRADING: LOOP_RESTRICT
         iter = SectionIterator(self.__river_parts)
         for section in iter:
             print(section.details())

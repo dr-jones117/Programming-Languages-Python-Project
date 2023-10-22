@@ -5,25 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a52781fc-ffa2-4a96-9096-196f85a3ab9b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/morgan_jonah/BoatBehavior/MaxSpeedBoatBehavior.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/morgan_jonah/BoatBehavior/SteadyBoatBehavior.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/morgan_jonah/Iterators/ReverseRiverPartIterator.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/morgan_jonah/LockBehavior/BasicLockBehavior.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/morgan_jonah/LockBehavior/FastLockBehavior.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/morgan_jonah/LockBehavior/PassThroughLockBehavior.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/morgan_jonah/Iterators/ReverseBoatListIterator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/morgan_jonah/Iterators/SectionBoatsIterator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/morgan_jonah/BoatBehavior/BoatBehavior.py" beforeDir="false" afterPath="$PROJECT_DIR$/morgan_jonah/BoatBehavior/BoatBehavior.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/morgan_jonah/LockBehavior/LockBehavior.py" beforeDir="false" afterPath="$PROJECT_DIR$/morgan_jonah/LockBehavior/LockBehavior.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/morgan_jonah/MainStarter.py" beforeDir="false" afterPath="$PROJECT_DIR$/morgan_jonah/MainStarter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/morgan_jonah/RiverPart/Boat.py" beforeDir="false" afterPath="$PROJECT_DIR$/morgan_jonah/RiverSystem/RiverParts/Boat.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/morgan_jonah/RiverPart/Lock.py" beforeDir="false" afterPath="$PROJECT_DIR$/morgan_jonah/RiverSystem/RiverParts/Lock.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/morgan_jonah/RiverPart/RiverPart.py" beforeDir="false" afterPath="$PROJECT_DIR$/morgan_jonah/RiverSystem/RiverParts/RiverPart.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/morgan_jonah/RiverPart/Section.py" beforeDir="false" afterPath="$PROJECT_DIR$/morgan_jonah/RiverSystem/RiverParts/Section.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/morgan_jonah/RiverPartIterator.py" beforeDir="false" afterPath="$PROJECT_DIR$/morgan_jonah/Iterators/RiverPartIterator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/morgan_jonah/RiverSystem.py" beforeDir="false" afterPath="$PROJECT_DIR$/morgan_jonah/RiverSystem/RiverSystem.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/morgan_jonah/SectionIterator.py" beforeDir="false" afterPath="$PROJECT_DIR$/morgan_jonah/Iterators/SectionIterator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tier9-student.out" beforeDir="false" afterPath="$PROJECT_DIR$/tier9-student.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tier9-studentInputAdded.out" beforeDir="false" afterPath="$PROJECT_DIR$/tier9-studentInputAdded.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/morgan_jonah/Iterators/ReverseRiverPartIterator.py" beforeDir="false" afterPath="$PROJECT_DIR$/morgan_jonah/Iterators/ReverseRiverPartIterator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/morgan_jonah/RiverSystem/RiverParts/Section.py" beforeDir="false" afterPath="$PROJECT_DIR$/morgan_jonah/RiverSystem/RiverParts/Section.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,16 +110,5 @@
       <updated>1697917184682</updated>
     </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/morgan_jonah/RiverSystem/RiverParts/Section.py</url>
-          <line>43</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

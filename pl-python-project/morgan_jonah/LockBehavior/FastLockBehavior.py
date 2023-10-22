@@ -1,6 +1,6 @@
 from morgan_jonah.LockBehavior.LockBehavior import LockBehavior
 
-
+# GRADING: FAST_EMPTY
 class FastLockBehavior(LockBehavior):
     def handle_lock(self, lock):
         if lock.boat is not None and lock.water_level < lock.depth:

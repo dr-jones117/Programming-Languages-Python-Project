@@ -1,4 +1,4 @@
-from MorganJonah.BoatBehavior.BoatBehavior import BoatBehavior, SteadyBoatBehavior
+from morgan_jonah.BoatBehavior.BoatBehavior import BoatBehavior, SteadyBoatBehavior
 
 
 class Boat:

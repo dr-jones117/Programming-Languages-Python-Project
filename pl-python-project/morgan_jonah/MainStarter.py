@@ -44,9 +44,9 @@
 # String formatting correct					        ___
 # Everything still works 						    ___
 # Bad input handled 						        ___
-from MorganJonah.BoatBehavior.BoatBehavior import SteadyBoatBehavior, MaxSpeedBoatBehavior
-from MorganJonah.RiverPart.Lock import Lock
-from MorganJonah.RiverPart.Section import Section
+from morgan_jonah.BoatBehavior.BoatBehavior import SteadyBoatBehavior, MaxSpeedBoatBehavior
+from morgan_jonah.RiverPart.Lock import Lock
+from morgan_jonah.RiverPart.Section import Section
 from RiverSystem import RiverSystem
 from RiverPart.Boat import Boat
 

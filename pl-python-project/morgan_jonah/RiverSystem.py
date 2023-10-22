@@ -1,10 +1,10 @@
 from typing import List
 
-from MorganJonah.RiverPart import RiverPart, Boat
-from MorganJonah.RiverPart.Lock import Lock
-from MorganJonah.RiverPart.Section import Section
-from MorganJonah.RiverPartIterator import ReverseRiverPartIterator
-from MorganJonah.SectionIterator import SectionIterator
+from morgan_jonah.RiverPart import RiverPart, Boat
+from morgan_jonah.RiverPart.Lock import Lock
+from morgan_jonah.RiverPart.Section import Section
+from morgan_jonah.RiverPartIterator import ReverseRiverPartIterator
+from morgan_jonah.SectionIterator import SectionIterator
 
 
 class RiverSystem():

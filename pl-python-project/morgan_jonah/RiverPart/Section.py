@@ -1,7 +1,7 @@
 from typing import List, Optional
 
-from MorganJonah.RiverPart.Boat import Boat
-from MorganJonah.RiverPart.RiverPart import RiverPart
+from morgan_jonah.RiverPart.Boat import Boat
+from morgan_jonah.RiverPart.RiverPart import RiverPart
 
 class ReverseBoatListIterator:
     def __init__(self, boat_list: List[Optional[Boat]]):

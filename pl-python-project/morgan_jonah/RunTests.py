@@ -1,4 +1,4 @@
-from MorganJonah import MainStarter
+from morgan_jonah import MainStarter
 from ColorText import ColorText
 
 import io

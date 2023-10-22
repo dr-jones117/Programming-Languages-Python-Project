@@ -1,7 +1,7 @@
 from typing import List
 
-from MorganJonah.RiverPart.RiverPart import RiverPart
-from MorganJonah.RiverPart.Section import Section
+from morgan_jonah.RiverPart.RiverPart import RiverPart
+from morgan_jonah.RiverPart.Section import Section
 
 
 class SectionIterator:

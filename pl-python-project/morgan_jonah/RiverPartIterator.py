@@ -1,6 +1,6 @@
 from typing import List
 
-from MorganJonah.RiverPart.RiverPart import RiverPart
+from morgan_jonah.RiverPart.RiverPart import RiverPart
 
 
 class ReverseRiverPartIterator:

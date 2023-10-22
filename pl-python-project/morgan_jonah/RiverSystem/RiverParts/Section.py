@@ -1,7 +1,7 @@
 from typing import List, Optional
 
-from morgan_jonah.RiverPart.Boat import Boat
-from morgan_jonah.RiverPart.RiverPart import RiverPart
+from morgan_jonah.RiverSystem.RiverParts.Boat import Boat
+from morgan_jonah.RiverSystem.RiverParts.RiverPart import RiverPart
 
 class ReverseBoatListIterator:
     def __init__(self, boat_list: List[Optional[Boat]]):
@@ -69,6 +69,8 @@ class Section(RiverPart):
                 return
 
             start_idx = offset
+
+            # don't give the next object a boat if the water level isn't the same
 
     def remove_boat(self, boat: Boat):
         boat = None

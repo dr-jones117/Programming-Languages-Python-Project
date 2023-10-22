@@ -1,13 +1,14 @@
 from typing import List
 
-from morgan_jonah.RiverPart.RiverPart import RiverPart
-from morgan_jonah.RiverPart.Section import Section
+from morgan_jonah.RiverSystem.RiverParts.RiverPart import RiverPart
+from morgan_jonah.RiverSystem.RiverParts.Section import Section
 
 
 class SectionIterator:
     def __init__(self, sections: List[RiverPart]):
         self.sections: List[RiverPart] = sections
         self.idx = 0
+
     def __iter__(self):
         return self
 
@@ -26,4 +27,3 @@ class SectionIterator:
                     self.idx += 1
 
         raise StopIteration
-

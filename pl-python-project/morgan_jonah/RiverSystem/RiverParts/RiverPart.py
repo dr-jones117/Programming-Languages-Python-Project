@@ -1,7 +1,7 @@
 from abc import abstractmethod, ABC
-from typing import List, Optional
+from typing import Optional
 
-from morgan_jonah.RiverPart.Boat import Boat
+from morgan_jonah.RiverSystem.RiverParts.Boat import Boat
 
 
 class RiverPart(ABC):

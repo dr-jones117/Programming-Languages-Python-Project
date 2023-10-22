@@ -1,7 +1,7 @@
-# Grading tags in for all lines marked with *               ___
+# Grading tags in for all lines marked with *                _DONE_
 #
-# Tierless str meets D in SOLID(hidden test)*		        _DONE_
-# Check if above is done, but not its test was not reached	___
+# Tierless str meets D in SOLID(hidden test)*		         _DONE_
+# Check if above is done, but not its test was not reached	 _Test was reached!_
 #
 # 1. Initial Show system\Got it compiling
 # Menu\initial system working					    _DONE_
@@ -9,7 +9,7 @@
 #
 # 2. Add Default
 # Added and shown properly					        _DONE_
-# Secon d+ item ignored						        _DONE_
+# Second+ item ignored						        _DONE_
 #
 # 3. Basic Update (single)
 # Moves along section						        _DONE_
@@ -27,28 +27,32 @@
 # Iterator use d*							        _DONE_
 #
 # 6. Add user specified item
-# Basic movement still works					    ___
-# Powered works							            ___
-# No passing							            ___
+# Basic movement still works					    _DONE_
+# Powered works							            _DONE_
+# No passing							            _DONE_
 #
 # 7. Tester part 1
-# Boats works up to second lock 					___
-# Formatting correct 						        ___
+# Boats works up to second lock 					_DONE_
+# Formatting correct 						        _DONE_
 #
 # 8. Tester part 2
-# Boats works up to end						        ___
-# Strategy pattern for basic fil l*				    ___
-#     Strategy pattern for fast empt y*				___
+# Boats works up to end						        _DONE_
+# Strategy pattern for basic fil l*				    _DONE_
+#     Strategy pattern for fast empt y*				_DONE_
 #
 # 9. Custom belt **
-# String formatting correct					        ___
-# Everything still works 						    ___
-# Bad input handled 						        ___
-from morgan_jonah.BoatBehavior.BoatBehavior import SteadyBoatBehavior, MaxSpeedBoatBehavior
-from morgan_jonah.RiverPart.Lock import Lock
-from morgan_jonah.RiverPart.Section import Section
-from RiverSystem import RiverSystem
-from RiverPart.Boat import Boat
+# String formatting correct					        _DONE_
+# Everything still works 						    _DONE_
+# Bad input handled 						        _DONE_
+from morgan_jonah.BoatBehavior.MaxSpeedBoatBehavior import MaxSpeedBoatBehavior
+from morgan_jonah.BoatBehavior.SteadyBoatBehavior import SteadyBoatBehavior
+from morgan_jonah.LockBehavior.BasicLockBehavior import BasicLockBehavior
+from morgan_jonah.LockBehavior.FastLockBehavior import FastLockBehavior
+from morgan_jonah.LockBehavior.PassThroughLockBehavior import PassThroughLockBehavior
+from morgan_jonah.RiverSystem.RiverParts.Lock import Lock
+from morgan_jonah.RiverSystem.RiverParts.Section import Section
+from morgan_jonah.RiverSystem.RiverSystem import RiverSystem
+from morgan_jonah.RiverSystem.RiverParts.Boat import Boat
 
 boat_id = 1
 
@@ -83,17 +87,17 @@ def main():
             print(menu)
             choice = int(cleanInput("Choice:> "))
 
-            # add default box
+            # add default boat
             if choice == 1:
-                add_default_boat(boat_id, river_system)
+                add_default_boat(river_system)
                 boat_id += 1
 
-            # update one time
+            # update one tick
             elif choice == 2:
                 river_system.update()
                 print(river_system)
 
-            # update X number of times
+            # update X number of ticks
             elif choice == 3:
                 run_multiple_updates(river_system)
 
@@ -113,17 +117,19 @@ def main():
 
             # make new system
             elif choice == 7:
-                print("TODO")
+                make_river_command(river_system)
 
             # debug/check for D in SOLID in __str__
             elif choice == -1:
                 hidden_command(river_system)
 
+            # exit the program
             elif choice == 0:
                 choice = 0
 
             elif choice < -1 or choice > 7:
                 print("Input an option in the range 0-7")
+
         except ValueError:
             # import traceback
             # print(traceback.format_exc())
@@ -152,21 +158,26 @@ def add_boat(river_system: RiverSystem):
     print(river_system)
 
 
+def add_default_boat(river_system: RiverSystem):
+    global boat_id
 
-def add_default_boat(boat_id: int, river_system: RiverSystem):
     new_boat = Boat(boat_id)
     river_system.add_boat(new_boat)
     print(river_system)
 
 
-
 def hidden_command(river_system: RiverSystem):
+    global boat_id
+
     test_section = Section()
     test_lock = Lock()
 
-    boat_one = Boat(1)
-    boat_two = Boat(2)
-    boat_three = Boat(3)
+    boat_one = Boat(boat_id)
+    boat_id += 1
+    boat_two = Boat(boat_id)
+    boat_id += 1
+    boat_three = Boat(boat_id)
+    boat_id += 1
 
     test_section.receive_boat(boat_one)
     test_lock.receive_boat(boat_two)
@@ -188,6 +199,45 @@ def run_multiple_updates(river_system: RiverSystem):
 
 def show_section_details(river_system: RiverSystem):
     river_system.show_section_details()
+
+
+def make_river_command(river_system: RiverSystem):
+    river_system.clear()
+    keep_adding_parts = True
+    section_id = 1
+
+    while keep_adding_parts:
+        try:
+            choice = int(cleanInput("Section (1) or Lock (2):> "))
+            if choice < 1 or choice > 2:
+                print('Input an option in the range 1-2')
+            elif choice == 1:
+                length = int(cleanInput("Length:> "))
+                flow = int(cleanInput("Flow:> "))
+                river_system.add_river_part(Section(length, flow, section_id))
+                section_id += 1
+
+            elif choice == 2:
+                behavior = int(cleanInput("Fill behavior: None (1), Basic (2), or Fast Empty (3):> "))
+                depth = int(cleanInput("Depth:> "))
+
+                if behavior == 1:
+                    behavior = PassThroughLockBehavior()
+                elif behavior == 2:
+                    behavior = BasicLockBehavior()
+                elif behavior == 3:
+                    behavior = FastLockBehavior()
+
+                river_system.add_river_part(Lock(depth, behavior))
+
+        except ValueError:
+            print('Cannot accept value')
+
+        continue_adding = cleanInput("Add another component (n to stop):> ")
+        if continue_adding == 'n':
+            keep_adding_parts = False
+
+    print(river_system)
 
 
 if __name__ == '__main__':

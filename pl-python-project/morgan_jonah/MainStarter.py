@@ -38,12 +38,32 @@
 # 8. Tester part 2
 # Boats works up to end						        _DONE_
 # Strategy pattern for basic fil l*				    _DONE_
-#     Strategy pattern for fast empt y*				_DONE_
+#     Strategy pattern for fast empty*				_DONE_
 #
 # 9. Custom belt **
 # String formatting correct					        _DONE_
 # Everything still works 						    _DONE_
 # Bad input handled 						        _DONE_
+
+"""
+River Simulation System
+
+This script implements a river simulation system that allows users to interact with a river
+system. The available functionality is explained below.
+
+The script provides the following functionality:
+1. Add a default boat to the river.
+2. Update the simulation for a single time step.
+3. Update the simulation for 'n' number of time steps.
+4. Show the details of each section in the river.
+5. Add boats to the river with specified power and behaviors.
+6. Create a tester river with predefined components for debugging.
+7. Create a new river system with custom sections and locks.
+
+Author: Jonah Morgan
+Date: 10/21/2023
+"""
+
 from morgan_jonah.BoatBehavior.MaxSpeedBoatBehavior import MaxSpeedBoatBehavior
 from morgan_jonah.BoatBehavior.SteadyBoatBehavior import SteadyBoatBehavior
 from morgan_jonah.LockBehavior.BasicLockBehavior import BasicLockBehavior
@@ -58,6 +78,22 @@ boat_id = 1
 
 
 def cleanInput(prompt):
+    """
+    Get user input and ensure it is not empty.
+
+    This function prompts the user with the given message (prompt) and
+    ensures that the input is not empty. If the user provides an empty
+    input.
+
+    Args:
+        prompt (str): The message to display when requesting input.
+
+    Returns:
+        str: The non-empty user input.
+
+    Example:
+        result = cleanInput("Enter your name: ")
+    """
     result = input(prompt)
     # strips out blank lines in input
     while result == '':
@@ -67,6 +103,19 @@ def cleanInput(prompt):
 
 
 def main():
+    """
+    Main function for the River Simulation System.
+
+    This function serves as the entry point for the river simulation system.
+    It provides a menu for users to interact with the simulation, including
+    options to add boats, update the simulation, and customize the river system.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     menu = "\n" \
            "1) Add Default Boat\n" \
            "2) Update One Tick\n" \
@@ -137,6 +186,23 @@ def main():
 
 
 def add_boat(river_system: RiverSystem):
+    """
+    Add a boat to the river system with customizable attributes.
+
+    This function allows the user to add a boat to the river system
+    with customizable power and travel methods. The user is prompted
+    for input regarding the boat's characteristics, and then the
+    boat is added to the river system.
+
+    Args:
+        river_system (RiverSystem): The river system to which the boat is added to.
+
+    Returns:
+        None
+
+    Example:
+        add_boat(river_system)
+    """
     global boat_id
     power = int(cleanInput("What engine power:> "))
     travel_method = int(cleanInput("What travel method. (1) Steady or (2) Max :> "))
@@ -159,6 +225,23 @@ def add_boat(river_system: RiverSystem):
 
 
 def add_default_boat(river_system: RiverSystem):
+    """
+    Add a default boat to the river system.
+
+    This function adds a default boat to the river system.
+    The default boat is added without specifying custom power
+     or travel methods.
+
+    Args:
+        river_system (RiverSystem): The river system the boat
+        will be added to.
+
+    Returns:
+        None
+
+    Example:
+        add_default_boat(river_system)
+    """
     global boat_id
 
     new_boat = Boat(boat_id)
@@ -167,6 +250,23 @@ def add_default_boat(river_system: RiverSystem):
 
 
 def hidden_command(river_system: RiverSystem):
+    """
+    Run the hidden command for D in SOLID print testing.
+
+    This function is used for debugging and allows the user to perform THE
+    hidden command. It creates a test section, test lock, and three test boats.
+    Afterward, it prints these objects. Which adheres to the D in SOLID.
+
+    Args:
+        river_system (RiverSystem): The river system to which
+        objects are added and printed.
+
+    Returns:
+        None
+
+    Example:
+        hidden_command(my_river_system)
+    """
     global boat_id
 
     test_section = Section()
@@ -191,6 +291,24 @@ def hidden_command(river_system: RiverSystem):
 
 
 def run_multiple_updates(river_system: RiverSystem):
+    """
+    Update the river system for multiple ticks.
+
+    This function allows the user to update the river system
+    for a specified number of time steps. It prompts the user
+    for the number of updates and then iteratively updates the
+    river system. The updated river system is printed after
+    each update.
+
+    Args:
+        river_system (RiverSystem): The river system to be updated.
+
+    Returns:
+        None
+
+    Example:
+        run_multiple_updates(my_river_system)
+    """
     choice = int(cleanInput("How many updates:> "))
     for _ in range(choice):
         river_system.update()
@@ -198,10 +316,41 @@ def run_multiple_updates(river_system: RiverSystem):
 
 
 def show_section_details(river_system: RiverSystem):
+    """
+    Show details of each section in the river system.
+
+    This function displays details of each section in the
+    river system, such as section ID, amount of boats, and flow.
+
+    Args:
+        river_system (RiverSystem): The river system for which
+        section details are displayed.
+
+    Returns:
+        None
+
+    Example:
+        show_section_details(my_river_system)
+    """
     river_system.show_section_details()
 
 
 def make_river_command(river_system: RiverSystem):
+    """
+    Create a new river system with custom sections and locks.
+
+    This function allows the user to create a new river system
+    by adding custom sections and locks.
+    Args:
+        river_system (RiverSystem): The river system to
+        which custom components are added.
+
+    Returns:
+        None
+
+    Example:
+        make_river_command(my_river_system)
+    """
     river_system.clear()
     keep_adding_parts = True
     section_id = 1

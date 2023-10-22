@@ -1,5 +1,6 @@
 from morgan_jonah.LockBehavior.LockBehavior import LockBehavior
 
+
 # GRADING: FAST_EMPTY
 class FastLockBehavior(LockBehavior):
     def handle_lock(self, lock):
